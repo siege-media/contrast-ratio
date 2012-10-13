@@ -184,14 +184,16 @@ foreground.oninput = function() {
 		
 		this.title = 'Relative luminance: ' + (this.color && this.color.luminance);
 		
-		var onhashchange = window.onhashchange;
-		window.onhashchange = null;
-		
-		location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
-		
-		setTimeout(function() {
-			window.onhashchange = onhashchange;
-		}, 10);
+		if (foreground.value !== foreground.defaultValue || background.value !== background.defaultValue) {
+			var onhashchange = window.onhashchange;
+			window.onhashchange = null;
+			
+			location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
+			
+			setTimeout(function() {
+				window.onhashchange = onhashchange;
+			}, 10);
+		}
 	}
 }
 
