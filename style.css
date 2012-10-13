@@ -13,6 +13,11 @@ body {
 	color: black;
 }
 
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
 body > h1 {
 	margin-bottom: 1.3em;
 	text-indent: -1.7em;
@@ -22,17 +27,17 @@ body > h1 {
 	line-height: 1.3;
 }
 
-	body > h1 > span,
-	body > h1 > strong {
+	body > h1 span,
+	body > h1 strong {
 		padding: .1em .4em;
 	}
 
-	body > h1 > span {
+	body > h1 span {
 		background: black;
 		color: white;
 	}
 
-	body > h1 > strong {
+	body > h1 strong {
 		background: white;
 		color: black;
 	}
