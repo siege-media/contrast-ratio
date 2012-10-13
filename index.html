@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<title></title>
+<link rel="stylesheet" href="style.css" />
+<script src="prefixfree.min.js"></script>
+
+</head>
+<body>
+
+<h1><span>Contrast</span> <strong>ratio</strong></h1>
+
+<label class="background">
+	<span>Background:</span>
+	<input id="background" value="white" />
+</label>
+
+<label class="foreground">
+	<span>Text color:</span>
+	<input id="foreground" value="hsla(200,0%,0%,.7)" />
+</label>
+
+<output tabindex="0">
+	<strong>?</strong>
+	<span class="error"></span>
+</output>
+
+<section id="results">
+	
+</section>
+
+<section class="color-display" id="backgroundDisplay">
+	<h1>How to use</h1>
+	<p>As you type, the contrast ratio indicated will update. Hover over the circle to get more detailed information. When semi-transparent colors are involved as backgrounds, the contrast ratio will have an error margin, to account for the different colors they may be over.</p>
+	<p style="font-family: Garamond, 'Palatino Linotype', Georgia, serif;">This sample text attempts to visually demonstrate how readable this color combination is, for normal or <strong>bold</strong> text of various sizes and font styles. </p>
+	<p style="font-size: 11pt;"><strong>Hint:</strong> Press the up and down keyboard arrows while over a number inside a functional color notation. Watch it increment/decrement. Try with the Shift or Alt key too!</p>
+</section>
+<section class="color-display" id="foregroundDisplay">
+	<button id="swap">Set as background color</button>
+</section>
+
+<footer></footer>
+
+<script src="http://leaverou.github.com/incrementable/incrementable.js" id="incrementable" async></script>
+<script src="color.js"></script>
+<script src="contrast-ratio.js"></script>
+
+</body>
+</html>
