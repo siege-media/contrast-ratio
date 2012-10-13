@@ -183,6 +183,15 @@ foreground.oninput = function() {
 		update();
 		
 		this.title = 'Relative luminance: ' + (this.color && this.color.luminance);
+		
+		var onhashchange = window.onhashchange;
+		window.onhashchange = null;
+		
+		location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
+		
+		setTimeout(function() {
+			window.onhashchange = onhashchange;
+		}, 10);
 	}
 }
 
@@ -214,18 +223,6 @@ window.decodeURIComponent = (function(){
 		return str.search(/%[\da-f]/i) > -1? decodeURIComponent(str) : str;
 	};
 })();
-
-background.onblur =
-foreground.onblur = function() {
-	var onhashchange = window.onhashchange;
-	window.onhashchange = null;
-	
-	location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
-	
-	setTimeout(function() {
-		window.onhashchange = onhashchange;
-	}, 10);
-}
 
 onhashchange = function () {
 	if (location.hash) {
