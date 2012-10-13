@@ -197,20 +197,50 @@ swap.onclick = function() {
 	update();
 }
 
+window.encodeURIComponent = (function(){
+	var encodeURIComponent = window.encodeURIComponent;
+
+	return function (str) {
+		return encodeURIComponent(str).replace(/[()]/g, function ($0) {
+			return escape($0);
+		});
+	};
+})();
+
+window.decodeURIComponent = (function(){
+	var decodeURIComponent = window.decodeURIComponent;
+
+	return function (str) {
+		return str.search(/%[\da-f]/i) > -1? decodeURIComponent(str) : str;
+	};
+})();
+
 background.onblur =
 foreground.onblur = function() {
-	location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
-}
-
-if (!location.hash) {
-	background.onblur();
-}
-else {
-	var colors = location.hash.slice(1).split('-on-');
+	var onhashchange = window.onhashchange;
+	window.onhashchange = null;
 	
-	foreground.value = decodeURIComponent(colors[0]);
-	background.value = decodeURIComponent(colors[1]);
+	location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
+	
+	setTimeout(function() {
+		window.onhashchange = onhashchange;
+	}, 10);
 }
 
-background.oninput();
-foreground.oninput();
+onhashchange = function () {
+	if (location.hash) {
+		var colors = location.hash.slice(1).split('-on-');
+		
+		foreground.value = decodeURIComponent(colors[0]);
+		background.value = decodeURIComponent(colors[1]);
+	}
+	else {
+		foreground.value = foreground.defaultValue;
+		background.value = background.defaultValue;
+	}
+	
+	background.oninput();
+	foreground.oninput();
+};
+
+onhashchange();
