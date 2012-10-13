@@ -157,12 +157,18 @@ output {
 	.color-display p {
 		font-size: 14pt;
 	}
+	
+	.color-display a:hover {
+		color: black;
+		background: yellow;
+	}
 
 	#backgroundDisplay {
 		left: 0;
 		right: 50%;
 		text-align: right;
 		direction: rtl;
+		overflow: auto;
 	}
 	
 	#foregroundDisplay {
