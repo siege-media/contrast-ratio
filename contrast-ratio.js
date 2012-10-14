@@ -70,15 +70,15 @@ function updateLuminance(input) {
 function update() {
 	if (foreground.color && background.color) {
 		if (foreground.value !== foreground.defaultValue || background.value !== background.defaultValue) {
-					window.onhashchange = null;
+			window.onhashchange = null;
+
+			location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
+			
+			setTimeout(function() {
+				window.onhashchange = hashchange;
+			}, 10);
+		}
 		
-					location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
-					
-					setTimeout(function() {
-						window.onhashchange = hashchange;
-					}, 10);
-				}
-				
 		var contrast = background.color.contrast(foreground.color);
 		
 		updateLuminance(background);
@@ -192,8 +192,8 @@ function colorChanged(input) {
 	display.style.background = input.value;
 	
 	var color = getComputedStyle(display).backgroundColor;
-	
-	if (color !== previousColor && color) {
+
+	if (color && (color !== previousColor || color === 'transparent')) {
 		// Valid & different color
 		if (isForeground) {
 			backgroundDisplay.style.color = input.value;
@@ -227,7 +227,7 @@ function hashchange() {
 background.oninput =
 foreground.oninput = function() {
 	var valid = colorChanged(this);
-	
+
 	if (valid) {
 		update();
 	}
