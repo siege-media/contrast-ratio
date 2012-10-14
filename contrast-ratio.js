@@ -54,9 +54,35 @@ function rangeIntersect(min, max, upper, lower) {
 	return (max < upper? max : upper) - (lower < min? min : lower);
 }
 
+function updateLuminance(input) {
+	input.title = 'Relative luminance: ';
+	
+	var color = input.color;
+	
+	if (input.color.alpha < 1) {
+		input.title += color.overlayOn(Color.BLACK).luminance + ' - ' + color.overlayOn(Color.WHITE).luminance;
+	}
+	else {
+		input.title += color.luminance;
+	}
+}
+
 function update() {
 	if (foreground.color && background.color) {
+		if (foreground.value !== foreground.defaultValue || background.value !== background.defaultValue) {
+					window.onhashchange = null;
+		
+					location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
+					
+					setTimeout(function() {
+						window.onhashchange = hashchange;
+					}, 10);
+				}
+				
 		var contrast = background.color.contrast(foreground.color);
+		
+		updateLuminance(background);
+		updateLuminance(foreground);
 
 		var min = contrast.min,
 		    max = contrast.max,
@@ -123,7 +149,7 @@ function update() {
 			
 			// Create gradient illustrating levels
 			var stops = [], previousPercentage = 0;
-			
+
 			for (var i=0; i < 2 * percentages.length; i++) {
 				var info = percentages[i % percentages.length];
 				
@@ -136,11 +162,17 @@ function update() {
 				previousPercentage = percentage;
 			}
 			
-			var gradient = 'linear-gradient(-45deg, ' + stops.join(', ') + ')';
-			
-			//console.log(gradient);
-			output.style.backgroundImage = PrefixFree.prefix + gradient;
-			output.style.backgroundImage = gradient;
+			if (PrefixFree.functions.indexOf('linear-gradient') > -1) {
+				// Prefixed implementation
+				var gradient = 'linear-gradient(-45deg, ' + stops.join(', ') + ')';
+				
+				output.style.backgroundImage = PrefixFree.prefix + gradient;
+			}
+			else {
+				var gradient = 'linear-gradient(135deg, ' + stops.join(', ') + ')';
+				
+				output.style.backgroundImage = gradient;
+			}
 		}
 		
 		output.className = classes.join(' '); 
@@ -175,25 +207,29 @@ function colorChanged(input) {
 	return false;
 }
 
+function hashchange() {
+
+	if (location.hash) {
+		var colors = location.hash.slice(1).split('-on-');
+		
+		foreground.value = decodeURIComponent(colors[0]);
+		background.value = decodeURIComponent(colors[1]);
+	}
+	else {
+		foreground.value = foreground.defaultValue;
+		background.value = background.defaultValue;
+	}
+	
+	background.oninput();
+	foreground.oninput();
+};
+
 background.oninput =
 foreground.oninput = function() {
 	var valid = colorChanged(this);
 	
 	if (valid) {
 		update();
-		
-		this.title = 'Relative luminance: ' + (this.color && this.color.luminance);
-		
-		if (foreground.value !== foreground.defaultValue || background.value !== background.defaultValue) {
-			var onhashchange = window.onhashchange;
-			window.onhashchange = null;
-			
-			location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
-			
-			setTimeout(function() {
-				window.onhashchange = onhashchange;
-			}, 10);
-		}
 	}
 }
 
@@ -226,20 +262,4 @@ window.decodeURIComponent = (function(){
 	};
 })();
 
-onhashchange = function () {
-	if (location.hash) {
-		var colors = location.hash.slice(1).split('-on-');
-		
-		foreground.value = decodeURIComponent(colors[0]);
-		background.value = decodeURIComponent(colors[1]);
-	}
-	else {
-		foreground.value = foreground.defaultValue;
-		background.value = background.defaultValue;
-	}
-	
-	background.oninput();
-	foreground.oninput();
-};
-
-onhashchange();
+(onhashchange = hashchange)();

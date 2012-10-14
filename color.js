@@ -132,15 +132,6 @@ _.prototype = {
 			}
 		}
 		
-		if (this.alpha <= 0) {
-			return {
-				ratio: 1,
-				error: 1,
-				min: 1,
-				max: 1
-			};
-		}
-		
 		// If we’re here, it means we have a semi-transparent background
 		// The text color may or may not be semi-transparent, but that doesn't matter
 		
