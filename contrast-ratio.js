@@ -193,7 +193,7 @@ function colorChanged(input) {
 	
 	var color = getComputedStyle(display).backgroundColor;
 
-	if (color && input.value && (color !== previousColor || color === 'transparent')) {
+	if (color && input.value && (color !== previousColor || color === 'transparent' || color === 'rgba(0, 0, 0, 0)')) {
 		// Valid & different color
 		if (isForeground) {
 			backgroundDisplay.style.color = input.value;
