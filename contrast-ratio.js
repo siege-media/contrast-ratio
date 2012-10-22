@@ -18,6 +18,12 @@ var messages = {
 	'aaa': 'Passes AAA level for any size text'
 };
 
+var canvas = document.createElement('canvas'),
+    ctx = canvas.getContext('2d');
+	
+canvas.width = canvas.height = 16;
+document.body.appendChild(canvas);
+
 incrementable.onload = function() {
 	if (window.Incrementable) {
 		new Incrementable(background);
@@ -176,6 +182,16 @@ function update() {
 		}
 		
 		output.className = classes.join(' '); 
+		
+		ctx.clearRect(0, 0, 16, 16);
+		
+		ctx.fillStyle = background.color + '';
+		ctx.fillRect(0, 0, 8, 16);
+		
+		ctx.fillStyle = foreground.color + '';
+		ctx.fillRect(8, 0, 8, 16);
+		
+		$('link[rel="shortcut icon"]').setAttribute('href', canvas.toDataURL());
 	}
 }
 
