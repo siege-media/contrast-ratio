@@ -32,34 +32,44 @@
 			
 		</section>
 
+		<section class="buttons">
+			<div class="share">
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="LeaVerou" data-size="large" data-related="w3c_wai">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			</div>
+			<button id="swap">Swap colors</button>
+		</section>
+
 		<section class="color-display" id="backgroundDisplay">
-			<h1>How to use</h1>
-			<p>As you type, the contrast ratio indicated will update. Hover over the circle to get more detailed information. When semi-transparent colors are involved as backgrounds, the contrast ratio will have an error margin, to account for the different colors they may be over.</p>
-			<p class="sample">This sample text attempts to visually demonstrate how readable this color combination is, for normal or <strong>bold</strong> text of various sizes and font styles. </p>
-			<p class="hint"><strong>Hint:</strong> Press the up and down keyboard arrows while over a number inside a functional color notation. Watch it increment/decrement. Try with the Shift or Alt key too!</p>
-			<footer>
-				By <a href="http://lea.verou.me" target="_blank">Lea Verou</a>
-				&bull; <a href="http://www.w3.org/TR/WCAG/#visual-audio-contrast" target="_blank">WCAG 2.0 on contrast ratio</a>				
-			</footer>
+			
 		</section>
 
 		<section class="color-display" id="foregroundDisplay">
-			<button id="swap">Set as background color</button>
+			
 		</section>
 
-		<footer></footer>
+		<section class="sample-display" id="sampleDisplay">
+			<h1>How to use</h1>
+			<p>As you type, the contrast ratio indicated will update. Hover over the circle to get more detailed information. When semi-transparent colors are involved as backgrounds, the contrast ratio will have an error margin, to account for the different colors they may be over.</p>
+			<p class="sample-text">This sample text attempts to visually demonstrate how readable this color combination is, for normal or <strong>bold</strong> text of various sizes and font styles. </p>
+			<p class="hint"><strong>Hint:</strong> Press the up and down keyboard arrows while over a number inside a functional color notation. Watch it increment/decrement. Try with the Shift or Alt key too!</p>
+
+			<footer>By <a href="http://lea.verou.me" target="_blank">Lea Verou</a>
+				&bull; <a href="http://www.w3.org/TR/WCAG/#visual-audio-contrast" target="_blank">WCAG 2.0 on contrast ratio</a>	
+			</footer>
+		</section>
 		
 		<script src="http://leaverou.github.com/incrementable/incrementable.js" id="incrementable" async></script>
 		
 		<script src="color.js"></script>
 		<script src="contrast-ratio.js"></script>
 
+<!--
 		<script>_gaq = [['_setAccount', 'UA-25106441-2'], ['_trackPageview']];</script>
 		<script src="http://www.google-analytics.com/ga.js" async></script>
-		
-		<a href="http://github.com/LeaVerou/contrast-ratio"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png" alt="Fork me on GitHub"></a>
+-->		
+		<a class="github-button" href="http://github.com/LeaVerou/contrast-ratio"><img src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
-		<a href="https://twitter.com/share" class="twitter-share-button" data-via="LeaVerou" data-size="large" data-related="w3c_wai">Tweet</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		
 	</body>
 </html>

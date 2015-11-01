@@ -86,13 +86,28 @@ input {
     direction: ltr; }
   .color-display p {
     font-size: 14pt; }
-    .color-display p.sample {
+    .color-display p.sample-text {
       font-family: Garamond, 'Palatino Linotype', Georgia, serif; }
     .color-display p.hint {
       font-size: 11pt; }
   .color-display a:hover {
     color: black;
     background: yellow; }
+
+.sample-display {
+  text-align: left;
+  margin-left: 5%;
+  width: 90%; }
+  .sample-display p {
+    font-size: 14pt; }
+    .sample-display p.sample-text {
+      font-family: Garamond, 'Palatino Linotype', Georgia, serif; }
+    .sample-display p.hint {
+      font-size: 11pt; }
+  @media screen and (min-width: 730px) {
+    .sample-display {
+      margin-left: 20%;
+      width: 60%; } }
 
 #backgroundDisplay {
   left: 0;
@@ -192,21 +207,35 @@ button {
   border-radius: .3em;
   box-shadow: 0 1px white inset, 0 0.6em rgba(255, 255, 255, 0.2) inset, -0.1em -0.1em 0.5em rgba(0, 0, 0, 0.4) inset, 0 0.3em 0.2em -0.3em rgba(0, 0, 0, 0.5);
   background: white;
-  background: rgba(204, 204, 204, 0.6);
+  background: rgba(204, 204, 204, 0.9);
   cursor: pointer;
   color: black;
   text-shadow: 0 1px 1px white;
   font: inherit;
   font-size: 85%; }
   button:hover, button:focus {
-    background: rgba(255, 255, 255, 0.6); }
+    background: rgba(255, 255, 255, 0.9); }
   button:active {
-    box-shadow: 0 1px rgba(255, 255, 255, 0.3), 0 1px 0.3em 0.05em rgba(0, 0, 0, 0.6) inset; }
+    box-shadow: 0 1px rgba(255, 255, 255, 0.9), 0 1px 0.3em 0.05em rgba(0, 0, 0, 0.9) inset; }
 
 .twitter-share-button {
   position: absolute;
   top: 10px;
   right: 10px; }
+
+.github-button img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0; }
+
+@media screen and (max-width: 430px) {
+  .github-button {
+    display: none; } }
+
+@media (min-width: 431px) {
+  .github-button {
+    display: block; } }
 
 canvas {
   display: none; }

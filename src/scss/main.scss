@@ -120,7 +120,7 @@ input {
 	p {
 		font-size: 14pt;
 
-		&.sample {
+		&.sample-text {
 			font-family: Garamond, 'Palatino Linotype', Georgia, serif;
 		}
 
@@ -132,6 +132,29 @@ input {
 	a:hover {
 		color: black;
 		background: yellow;
+	}
+}
+
+.sample-display {
+	text-align: left;
+	margin-left: 5%;
+	width: 90%;
+
+	p {
+		font-size: 14pt;
+
+		&.sample-text {
+			font-family: Garamond, 'Palatino Linotype', Georgia, serif;
+		}
+
+		&.hint {
+			font-size: 11pt;
+		}
+	}
+
+	@media screen and (min-width: 730px) {
+		margin-left: 20%;
+		width: 60%;
 	}
 }
 
@@ -253,7 +276,7 @@ button {
 				-.1em -.1em .5em rgba(0,0,0,.4) inset,
 	            0 .3em .2em -.3em rgba(0,0,0,.5);
 	background: white;
-	background: hsla(0,0%,80%,.6);
+	background: hsla(0,0%,80%,.9);
 	cursor: pointer;
 	color: black;
 	text-shadow: 0 1px 1px white;
@@ -261,12 +284,12 @@ button {
 	font-size: 85%;
 
 	&:hover, &:focus {
-		background: hsla(0,0%,100%,.6);
+		background: hsla(0,0%,100%,.9);
 	}
 
 	&:active {
-		box-shadow: 0 1px hsla(0, 0%, 100%, .3),
-		            0 1px .3em .05em rgba(0,0,0,.6) inset;
+		box-shadow: 0 1px hsla(0, 0%, 100%, .9),
+		            0 1px .3em .05em rgba(0,0,0,.9) inset;
 	}
 }
 
@@ -274,6 +297,23 @@ button {
 	position: absolute;
 	top: 10px;
 	right: 10px;
+}
+
+.github-button {
+	img {
+		position: absolute; 
+		top: 0; 
+		left: 0; 
+		border: 0;
+	}
+
+	@media screen and (max-width: $small) {
+		display: none;
+	}
+
+	@media (min-width: $small+1) {
+		display: block;
+	}
 }
 
 canvas {

@@ -218,6 +218,7 @@ function colorChanged(input) {
 		// Valid & different color
 		if (isForeground) {
 			backgroundDisplay.style.color = input.value;
+			sampleDisplay.style.color = input.value;
 		}
 		
 		input.color = new Color(color);

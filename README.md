@@ -8,5 +8,4 @@ A tool to calculate the contrast ratio between any two valid CSS colors.
 - Run 'gulp' to automatically convert SCSS to CSS
 
 # TODO
-- Replace "Fork me on Github" with CSS
 - Responsive layout
