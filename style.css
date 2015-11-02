@@ -11,7 +11,9 @@ a {
 body {
   margin: auto;
   text-align: center;
-  font: 150%/1.5 sans-serif;
+  font-size: 150%;
+  line-height: 1.5;
+  font-family: sans-serif;
   color: black; }
   body > h1 {
     margin-bottom: 1.3em;
@@ -24,10 +26,13 @@ body {
       padding: .1em .4em; }
     body > h1 span {
       background: black;
-      color: red; }
+      color: white; }
     body > h1 strong {
       background: white;
       color: black; }
+    @media screen and (max-width: 430px) {
+      body > h1 {
+        font-size: 125%; } }
 
 label {
   position: absolute; }
@@ -40,39 +45,95 @@ label {
     text-shadow: 0 -.1em .1em black;
     font-size: 60%;
     font-weight: bold; }
-  label.background {
-    right: 50%;
-    text-align: left; }
-    label.background span {
-      margin-left: 1em; }
-  label.foreground {
-    left: 50%;
-    text-align: right; }
-    label.foreground span {
-      margin-right: 1em; }
 
 input {
-  position: relative;
-  display: block;
-  min-width: 8em;
-  width: 8em;
-  padding: .2em .5em .1em;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  padding: .2em .1em .1em .5em;
   margin-top: -.1em;
+  margin-right: .1em;
   border: thin solid rgba(0, 0, 0, 0.3);
+  border-radius: .3em;
   background: rgba(230, 230, 230, 0.9);
   color: #333;
   text-shadow: 0 .05em 1px white;
-  font: 150% Consolas, Monaco, 'Andale Mono', 'Lucida Console', monospace;
+  font: 100% Consolas, Monaco, 'Andale Mono', 'Lucida Console', monospace;
   box-shadow: 0.05em 0.1em 0.2em rgba(0, 0, 0, 0.4) inset; }
-  input#background {
-    padding-right: 2em;
-    margin-right: -.1em;
-    border-radius: .3em 0 0 .3em;
-    text-align: right; }
-  input#foreground {
-    padding-left: 2em;
-    margin-left: -.1em;
-    border-radius: 0 .3em .3em 0; }
+  @media screen and (min-width: 431px) {
+    input {
+      font-size: 110%; } }
+  @media screen and (min-width: 731px) {
+    input {
+      font-size: 120%; } }
+  @media screen and (min-width: 1025px) {
+    input {
+      font-size: 150%; } }
+
+.background-input {
+  margin-top: -1em; }
+  .background-input label {
+    left: 5%;
+    text-align: left;
+    margin-bottom: -1rem; }
+    .background-input label span {
+      margin-right: 1em;
+      margin-left: 5px; }
+  .background-input input {
+    text-align: left;
+    width: 95%;
+    margin-right: -1em; }
+  @media screen and (min-width: 431px) {
+    .background-input label {
+      left: 15%; } }
+  @media screen and (min-width: 1025px) {
+    .background-input label {
+      right: 50%;
+      text-align: left; }
+      .background-input label span {
+        margin-left: 1em; }
+    .background-input input {
+      width: 100%;
+      padding-right: 1em;
+      margin-right: 1em;
+      border-radius: .3em 0 0 .3em;
+      text-align: right; } }
+
+.foreground-input {
+  margin-top: 5em; }
+  .foreground-input label {
+    left: 5%;
+    text-align: left; }
+    .foreground-input label span {
+      margin-right: 1em;
+      margin-left: 5px; }
+  .foreground-input input {
+    width: 95%;
+    margin-right: -1em;
+    text-align: left; }
+  @media screen and (min-width: 431px) {
+    .foreground-input {
+      margin-top: 6em; }
+      .foreground-input label {
+        left: 15%; }
+      .foreground-input input {
+        width: 106%; } }
+  @media screen and (min-width: 1025px) {
+    .foreground-input {
+      margin-top: 0em; }
+      .foreground-input label {
+        left: 50%;
+        text-align: right; }
+        .foreground-input label span {
+          margin-right: 5%; }
+      .foreground-input input {
+        width: 100%;
+        padding-left: 2em;
+        margin-left: -.1em;
+        border-radius: 0 .3em .3em 0; } }
 
 .color-display {
   position: fixed;
@@ -93,6 +154,11 @@ input {
   .color-display a:hover {
     color: black;
     background: yellow; }
+
+#sampleDisplay {
+  border-top: 1px solid black;
+  padding-bottom: 20px;
+  margin-top: 10px; }
 
 .sample-display {
   text-align: left;
@@ -127,16 +193,26 @@ output {
   width: 3em;
   padding: 1em 0;
   border: thin solid rgba(0, 0, 0, 0.4);
-  margin: -0.1em auto 0;
+  margin: 7em auto 0;
   background: gray -35% -35%;
   background-size: 142% 142%;
   text-align: center;
   color: white;
   text-shadow: 0 -0.06em 0.05em rgba(0, 0, 0, 0.5);
-  font: bold 170%/1 'Arial Unicode MS', sans-serif;
+  font-weight: bold;
+  font-size: 120%;
+  line-height: 1;
+  font-family: 'Arial Unicode MS', sans-serif;
   letter-spacing: -.05em;
   box-shadow: 0.05em 0.1em 0.2em rgba(0, 0, 0, 0.4), -0.1em -0.1em 0.5em rgba(0, 0, 0, 0.4) inset, 0 0.3em rgba(255, 255, 255, 0.2) inset;
   border-radius: 50%; }
+  @media screen and (min-width: 431px) {
+    output {
+      font-size: 140%; } }
+  @media screen and (min-width: 1025px) {
+    output {
+      font-size: 170%;
+      margin: -0.1em auto 0; } }
   output strong {
     color: white !important; }
   output .error {

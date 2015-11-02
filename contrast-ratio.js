@@ -85,6 +85,11 @@ function update() {
 			}, 10);
 		}
 		
+		// set sample text 
+		sampleDisplay.style.color = foreground.color;
+		sampleDisplay.style.backgroundColor = background.color;
+
+		// calculation of result
 		var contrast = background.color.contrast(foreground.color);
 		
 		updateLuminance(background);
@@ -196,8 +201,8 @@ function update() {
 }
 
 function colorChanged(input) {
-	input.style.width = input.value.length * .56 + 'em';
-	input.style.width = input.value.length + 'ch';
+	//input.style.width = input.value.length * .56 + 'em';
+	//input.style.width = input.value.length + 'ch';
 	
 	var isForeground = input == foreground;
 	
@@ -218,11 +223,10 @@ function colorChanged(input) {
 		// Valid & different color
 		if (isForeground) {
 			backgroundDisplay.style.color = input.value;
-			sampleDisplay.style.color = input.value;
 		}
 		
-		input.color = new Color(color);
-		
+		input.color = new Color(color);	
+
 		return true;
 	}
 	
