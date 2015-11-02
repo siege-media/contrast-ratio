@@ -9,3 +9,4 @@ A tool to calculate the contrast ratio between any two valid CSS colors.
 
 # TODO
 - Responsive layout
+- Replace "pt" and "px" and "em" - one unit to rule them all
