@@ -236,7 +236,7 @@ input {
 }
 
 .sample-display {
-
+	overflow: auto;
 	text-align: left;
 	margin-left: 5%;
 	width: 90%;
@@ -254,6 +254,11 @@ input {
 	}
 
 	@media screen and (min-width: $medium) {
+		margin-left: 10%;
+		width: 80%;
+	}
+
+	@media screen and (min-width: $large) {
 		margin-left: 20%;
 		width: 60%;
 	}
@@ -295,11 +300,16 @@ output {
 	            0 .3em hsla(0,0%,100%,.2) inset;
 	border-radius: 50%;
 
-	@media screen and (min-width: $small+1) {
-		font-size: 140%;
+	@media screen and (min-width: $small) {
+		margin: 8em auto 0;
 	}
 
-	@media screen and (min-width: $large+1) {
+	@media screen and (min-width: $medium) {
+		font-size: 200%;
+		margin: 5em auto 0;
+	}
+
+	@media screen and (min-width: $large) {
 		font-size: 170%;
 		margin: -0.1em auto 0;
 	}
@@ -408,6 +418,14 @@ button {
 	&:active {
 		box-shadow: 0 1px hsla(0, 0%, 100%, .9),
 		            0 1px .3em .05em rgba(0,0,0,.9) inset;
+	}
+
+	@media screen and (min-width: $medium) {
+		font-size: 120%;
+	}
+
+	@media screen and (min-width: $large) {
+		font-size: 85%;
 	}
 }
 
