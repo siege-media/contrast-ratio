@@ -51,7 +51,6 @@ body {
 }
 
 label {
-	position: absolute;
 
 	span {
 		display: inline-block;
@@ -70,20 +69,17 @@ input {
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 
-	//position: relative;
-
 	padding: .2em .1em .1em .5em;
 	margin-top: -.1em;
-	margin-right: .1em;
 	border: thin solid rgba(0,0,0,.3);
 	border-radius: .3em;
 	background: hsla(0,0%,90%,.9);
 	color: #333;
 	text-shadow: 0 .05em 1px white;
-
-		
-	font: 100% Consolas, Monaco, 'Andale Mono', 'Lucida Console', monospace;
+	font-size: 110%;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Lucida Console', monospace;
 	box-shadow: .05em .1em .2em rgba(0,0,0,.4) inset;
+	width: 100%;
 
 	@media screen and (min-width: $small) {
 		font-size: 160%;
@@ -96,45 +92,42 @@ input {
 
 .background-input {
 	margin-top: -1em;
+	margin-left: 5%;
+	margin-right: 5%;
 	label {
-		left: 5%;
 		text-align: left;
-		margin-bottom: -1rem;
 
 		span {
-			margin-right: 1em;
-			margin-left: 5px;
+			position: absolute;
+			margin-left: 1em;
 		}
 	}
 
 	input {		
 		text-align: left;
-		width: 95%;
-		margin-right: -1em;
+		padding-top: .3em;
+		margin-top: 1.1em;
 	}
 
 	@media screen and (min-width: $small) {
-		margin-top: -2em;
-		label {
-			left: 15%;
+		margin-left: 5%;
+		input {	
+			margin-top: .7em;
 		}
 	}
 
 	@media screen and (min-width: $large){
+		margin-top: 0em;
+		width: 45%;
+		float: left;
+		margin-right: auto;
+		margin-left: 5%;
 		label {
-			right: 50%;
 			text-align: left;
-
-			span {
-				margin-left: -4em;
-			}
 		}
 
 		input {
-			width: 120%;
 			padding-right: 0em;
-			margin-left: -2.4em;
-			margin-right: 2em;
 			border-radius: .3em 0 0 .3em;
 			text-align: left;
 		}
@@ -142,52 +135,48 @@ input {
 }
 
 .foreground-input {
-	margin-top: 5em;
+	margin-top: 1em;
+	margin-left: 5%;
+	margin-right: 5%;
+
 	label {
-		left: 5%;
 		text-align: left;
 
 		span {
-			margin-right: 1em;
-			margin-left: 5px;
+			position: absolute;
+			margin-left: 1em;
 		}
 	}
 
 	input {
-		width: 95%;
-		margin-right: -1em;
-		text-align: left;
+		text-align: left;		
+		padding-top: .3em;
+		margin-top: 1.1em;
 	}
 
 	@media screen and (min-width: $small) {
-		margin-top: 7em;
-
-		label {
-			left: 15%;
-		}
-
-		input {
-			width: 106%;
+		input {	
+			margin-top: .7em;
 		}
 	}
 
 	@media screen and (min-width: $large) {
 		margin-top: 0em;
+		width: 45%;
+		float: left;
+		margin-left: auto;
+		margin-right: 5%;
 		label {
-			left: 50%;
 			text-align: right;
 
 			span {
-				margin-right: 5%;
+				margin-left: auto;
+			 	right: 7%;
 			}
 		}
 
 		input {
-			width: 100.25%;
 			text-align: right;
-			margin-left: 0em;
-			margin-right: 0.1em;
-			padding-right: 1rem;
 			border-radius: 0 .3em .3em 0;
 		}
 
@@ -280,14 +269,14 @@ output {
 	width: 3em;
 	padding: 1em 0;
 	border: thin solid rgba(0,0,0,.4);
-	margin: 7em auto 0;
+	margin: 0.5em auto 0;
 	background: hsl(0, 0%, 50%) -35% -35%;
 	background-size: 142% 142%;
 	text-align: center;
 	color: white;
 	text-shadow: 0 -.06em .05em rgba(0,0,0,.5);
 	font-weight: bold;
-	font-size: 120%;
+	font-size: 200%;
 	line-height: 1;
 	font-family: 'Arial Unicode MS', sans-serif;
 	letter-spacing: -.05em;
@@ -296,14 +285,10 @@ output {
 	            0 .3em hsla(0,0%,100%,.2) inset;
 	border-radius: 50%;
 
-	@media screen and (min-width: $small) {
-		font-size: 200%;
-		margin: 5.75em auto 0;
-	}
-
 	@media screen and (min-width: $large) {
 		font-size: 170%;
-		margin: -0.1em auto 0;
+		clear: none;
+		top: -2.25em;
 	}
 
 	strong {
@@ -342,6 +327,10 @@ output {
 	@media screen and (min-width: $small) {
 		width: 25em;
 		margin-left: -14em;
+	}
+
+	@media screen and (min-width: $large) {
+		margin-top: -5em;
 	}
 }
 
@@ -421,6 +410,12 @@ button {
 	}
 }
 
+.share {
+	@media screen and (min-width: $large) {
+		margin-top: -3.5em;
+	}
+}
+
 .twitter-share-button {
 	position: absolute;
 	top: 10px;
@@ -434,12 +429,11 @@ button {
 		left: 0; 
 		border: 0;
 	}
+	
+	display: none;
+	
 
-	@media screen and (max-width: $small) {
-		display: none;
-	}
-
-	@media (min-width: $small+1) {
+	@media (min-width: $medium) {
 		display: block;
 	}
 }
