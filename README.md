@@ -1,6 +1,7 @@
 A tool to calculate the contrast ratio between any two valid CSS colors.
 
 # Modification
+- Responsive layout
 - Using Gulp to automatically preprocess SCSS to CSS
 
 # Steps
