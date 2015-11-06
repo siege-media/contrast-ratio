@@ -66,9 +66,6 @@ input {
   box-shadow: 0.05em 0.1em 0.2em rgba(0, 0, 0, 0.4) inset; }
   @media screen and (min-width: 430px) {
     input {
-      font-size: 110%; } }
-  @media screen and (min-width: 730px) {
-    input {
       font-size: 160%; } }
   @media screen and (min-width: 1024px) {
     input {
@@ -88,11 +85,10 @@ input {
     width: 95%;
     margin-right: -1em; }
   @media screen and (min-width: 430px) {
-    .background-input label {
-      left: 15%; } }
-  @media screen and (min-width: 730px) {
     .background-input {
-      margin-top: -2em; } }
+      margin-top: -2em; }
+      .background-input label {
+        left: 15%; } }
   @media screen and (min-width: 1024px) {
     .background-input label {
       right: 50%;
@@ -121,14 +117,11 @@ input {
     text-align: left; }
   @media screen and (min-width: 430px) {
     .foreground-input {
-      margin-top: 6em; }
+      margin-top: 7em; }
       .foreground-input label {
         left: 15%; }
       .foreground-input input {
         width: 106%; } }
-  @media screen and (min-width: 430px) {
-    .foreground-input {
-      margin-top: 7em; } }
   @media screen and (min-width: 1024px) {
     .foreground-input {
       margin-top: 0em; }
@@ -141,7 +134,8 @@ input {
         width: 100.25%;
         text-align: right;
         margin-left: 0em;
-        margin-right: 0em;
+        margin-right: 0.1em;
+        padding-right: 1rem;
         border-radius: 0 .3em .3em 0; } }
 
 .color-display {
@@ -221,9 +215,6 @@ output {
   box-shadow: 0.05em 0.1em 0.2em rgba(0, 0, 0, 0.4), -0.1em -0.1em 0.5em rgba(0, 0, 0, 0.4) inset, 0 0.3em rgba(255, 255, 255, 0.2) inset;
   border-radius: 50%; }
   @media screen and (min-width: 430px) {
-    output {
-      margin: 8.75em auto 0; } }
-  @media screen and (min-width: 730px) {
     output {
       font-size: 200%;
       margin: 5.75em auto 0; } }

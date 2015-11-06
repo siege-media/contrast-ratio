@@ -86,10 +86,6 @@ input {
 	box-shadow: .05em .1em .2em rgba(0,0,0,.4) inset;
 
 	@media screen and (min-width: $small) {
-		font-size: 110%;
-	}
-
-	@media screen and (min-width: $medium) {
 		font-size: 160%;
 	}
 
@@ -118,13 +114,10 @@ input {
 	}
 
 	@media screen and (min-width: $small) {
+		margin-top: -2em;
 		label {
 			left: 15%;
 		}
-	}
-	
-	@media screen and (min-width: $medium) {
-		margin-top: -2em;
 	}
 
 	@media screen and (min-width: $large){
@@ -167,7 +160,7 @@ input {
 	}
 
 	@media screen and (min-width: $small) {
-		margin-top: 6em;
+		margin-top: 7em;
 
 		label {
 			left: 15%;
@@ -176,10 +169,6 @@ input {
 		input {
 			width: 106%;
 		}
-	}
-	
-	@media screen and (min-width: $small) {
-		margin-top: 7em;
 	}
 
 	@media screen and (min-width: $large) {
@@ -197,7 +186,8 @@ input {
 			width: 100.25%;
 			text-align: right;
 			margin-left: 0em;
-			margin-right: 0em;
+			margin-right: 0.1em;
+			padding-right: 1rem;
 			border-radius: 0 .3em .3em 0;
 		}
 
@@ -307,10 +297,6 @@ output {
 	border-radius: 50%;
 
 	@media screen and (min-width: $small) {
-		margin: 8.75em auto 0;
-	}
-
-	@media screen and (min-width: $medium) {
 		font-size: 200%;
 		margin: 5.75em auto 0;
 	}
