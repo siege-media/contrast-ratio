@@ -201,6 +201,7 @@ function update() {
 }
 
 function colorChanged(input) {
+	// Size of input is now determined by breakpoint and layout rather than content
 	//input.style.width = input.value.length * .56 + 'em';
 	//input.style.width = input.value.length + 'ch';
 	
