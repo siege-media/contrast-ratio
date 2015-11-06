@@ -6,6 +6,3 @@ A tool to calculate the contrast ratio between any two valid CSS colors.
 # Steps
 - Run 'npm install' to install dependencies
 - Run 'gulp' to automatically convert SCSS to CSS
-
-# TODO
-- Responsive layout

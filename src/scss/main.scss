@@ -1,5 +1,15 @@
-@import 'variables';
+// variables
+$base-background: #eee;
+$base-color: blue;
 
+$base-font-size: 16px;
+$hint-font-size: 0.8 * $base-font-size;
+
+$small: 430px;
+$medium: 730px;
+$large: 1024px;
+
+// scss
 html {
 	background: linear-gradient(45deg, currentColor 25%,  transparent 25%, transparent 75%, currentColor 75%, currentColor), 
 	            linear-gradient(45deg, currentColor 25%,  transparent 25%, transparent 75%, currentColor 75%, currentColor) 10px 10px;
