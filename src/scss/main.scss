@@ -85,15 +85,15 @@ input {
 	font: 100% Consolas, Monaco, 'Andale Mono', 'Lucida Console', monospace;
 	box-shadow: .05em .1em .2em rgba(0,0,0,.4) inset;
 
-	@media screen and (min-width: $small+1) {
+	@media screen and (min-width: $small) {
 		font-size: 110%;
 	}
 
-	@media screen and (min-width: $medium+1) {
-		font-size: 120%;
+	@media screen and (min-width: $medium) {
+		font-size: 160%;
 	}
 
-	@media screen and (min-width: $large+1) {
+	@media screen and (min-width: $large) {
 		font-size: 150%;
 	}
 } 
@@ -117,21 +117,23 @@ input {
 		margin-right: -1em;
 	}
 
-	@media screen and (min-width: $small+1) {
-
+	@media screen and (min-width: $small) {
 		label {
 			left: 15%;
 		}
 	}
+	
+	@media screen and (min-width: $medium) {
+		margin-top: -2em;
+	}
 
-
-	@media screen and (min-width: $large+1){
+	@media screen and (min-width: $large){
 		label {
 			right: 50%;
 			text-align: left;
 
 			span {
-				margin-left: 1em;
+				margin-left: -4em;
 			}
 		}
 
@@ -164,7 +166,7 @@ input {
 		text-align: left;
 	}
 
-	@media screen and (min-width: $small+1) {
+	@media screen and (min-width: $small) {
 		margin-top: 6em;
 
 		label {
@@ -175,8 +177,12 @@ input {
 			width: 106%;
 		}
 	}
+	
+	@media screen and (min-width: $small) {
+		margin-top: 7em;
+	}
 
-	@media screen and (min-width: $large+1) {
+	@media screen and (min-width: $large) {
 		margin-top: 0em;
 		label {
 			left: 50%;
@@ -301,12 +307,12 @@ output {
 	border-radius: 50%;
 
 	@media screen and (min-width: $small) {
-		margin: 8em auto 0;
+		margin: 8.75em auto 0;
 	}
 
 	@media screen and (min-width: $medium) {
 		font-size: 200%;
-		margin: 5em auto 0;
+		margin: 5.75em auto 0;
 	}
 
 	@media screen and (min-width: $large) {
@@ -347,7 +353,7 @@ output {
 	transform-origin: top;
 	transition: .4s transform;
 
-	@media screen and (min-width: $small+1) {
+	@media screen and (min-width: $small) {
 		width: 25em;
 		margin-left: -14em;
 	}
