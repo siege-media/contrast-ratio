@@ -85,6 +85,11 @@ function update() {
 			}, 10);
 		}
 		
+		// set sample text 
+		sampleDisplay.style.color = foreground.color;
+		sampleDisplay.style.backgroundColor = background.color;
+
+		// calculation of result
 		var contrast = background.color.contrast(foreground.color);
 		
 		updateLuminance(background);
@@ -196,8 +201,9 @@ function update() {
 }
 
 function colorChanged(input) {
-	input.style.width = input.value.length * .56 + 'em';
-	input.style.width = input.value.length + 'ch';
+	// Size of input is now determined by breakpoint and layout rather than content
+	//input.style.width = input.value.length * .56 + 'em';
+	//input.style.width = input.value.length + 'ch';
 	
 	var isForeground = input == foreground;
 	
@@ -220,8 +226,8 @@ function colorChanged(input) {
 			backgroundDisplay.style.color = input.value;
 		}
 		
-		input.color = new Color(color);
-		
+		input.color = new Color(color);	
+
 		return true;
 	}
 	
