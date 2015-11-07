@@ -248,6 +248,13 @@ input {
 		}
 	}
 
+	footer {
+		a:hover {
+			color: black;
+			background: yellow;
+		}
+	}	
+
 	@media screen and (min-width: $medium) {
 		margin-left: 10%;
 		width: 80%;

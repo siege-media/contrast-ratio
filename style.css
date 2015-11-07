@@ -170,6 +170,9 @@ input {
       font-family: Garamond, 'Palatino Linotype', Georgia, serif; }
     .sample-display p.hint {
       font-size: 11pt; }
+  .sample-display footer a:hover {
+    color: black;
+    background: yellow; }
   @media screen and (min-width: 730px) {
     .sample-display {
       margin-left: 10%;
