@@ -160,7 +160,7 @@ output {
 	
 	.color-display a:hover {
 		color: black;
-		background: yellow;
+		text-decoration: underline;
 	}
 
 	#backgroundDisplay {
@@ -258,6 +258,7 @@ button {
 	button:hover,
 	button:focus {
 		background: hsla(0,0%,100%,.6);
+		text-decoration: underline;
 	}
 	
 	button:active {
@@ -266,7 +267,7 @@ button {
 	}
 	
 .twitter-share-button {
-	position: absolute;
+	position: absolute !important;
 	top: 10px;
 	right: 10px;
 }
