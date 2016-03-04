@@ -140,14 +140,23 @@ _.prototype = {
 		    
 		var max = Math.max(onBlack, onWhite);
 		
+		// This is here for backwards compatibility and not used to calculate
+		// `min`.  Note that there may be other colors with a closer luminance to
+		// `color` if they have a different hue than `this`.
 		var closest = this.rgb.map(function(c, i) {
 			return Math.min(Math.max(0, (color.rgb[i] - c * alpha)/(1-alpha)), 255);
 		});
 		
 		closest = new _(closest);
 
-		var min = this.overlayOn(closest).contrast(color).ratio;
-				
+		var min = 1;
+		if (this.overlayOn(_.BLACK).luminance > color.luminance) {
+			min = onBlack;
+		}
+		else if (this.overlayOn(_.WHITE).luminance < color.luminance) {
+			min = onWhite;
+		}
+
 		return {
 			ratio: Math.round((min + max) / 2, 2),
 			error: Math.round((max - min) / 2, 2),
