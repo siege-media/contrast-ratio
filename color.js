@@ -37,7 +37,7 @@ var _ = self.Color = function(rgba) {
 	rgba = rgba.map(function (a) { return Math.round(a, 3) });
 	
 	this.rgba = rgba;
-}
+};
 
 _.prototype = {
 	get rgb () {
@@ -129,7 +129,7 @@ _.prototype = {
 				error: 0,
 				min: ratio,
 				max: ratio
-			}
+			};
 		}
 		
 		// If we’re here, it means we have a semi-transparent background
@@ -168,7 +168,7 @@ _.prototype = {
 			farthest: onWhite == max? _.WHITE : _.BLACK
 		};
 	}
-}
+};
 
 _.BLACK = new _([0,0,0]);
 _.GRAY = new _([127.5, 127.5, 127.5]);

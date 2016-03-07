@@ -243,7 +243,7 @@ function hashchange() {
 	
 	background.oninput();
 	foreground.oninput();
-};
+}
 
 background.oninput =
 foreground.oninput = function() {
@@ -252,7 +252,7 @@ foreground.oninput = function() {
 	if (valid) {
 		update();
 	}
-}
+};
 
 swap.onclick = function() {
 	var backgroundColor = background.value;
@@ -263,7 +263,7 @@ swap.onclick = function() {
 	colorChanged(foreground);
 	
 	update();
-}
+};
 
 window.encodeURIComponent = (function(){
 	var encodeURIComponent = window.encodeURIComponent;
