@@ -20,7 +20,7 @@ var messages = {
 
 var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
-	
+
 canvas.width = canvas.height = 16;
 document.body.appendChild(canvas);
 
@@ -62,9 +62,9 @@ function rangeIntersect(min, max, upper, lower) {
 
 function updateLuminance(input) {
 	input.title = 'Relative luminance: ';
-	
+
 	var color = input.color;
-	
+
 	if (input.color.alpha < 1) {
 		input.title += color.overlayOn(Color.BLACK).luminance + ' - ' + color.overlayOn(Color.WHITE).luminance;
 	}
@@ -79,14 +79,14 @@ function update() {
 			window.onhashchange = null;
 
 			location.hash = '#' + encodeURIComponent(foreground.value) + '-on-' + encodeURIComponent(background.value);
-			
+
 			setTimeout(function() {
 				window.onhashchange = hashchange;
 			}, 10);
 		}
-		
+
 		var contrast = background.color.contrast(foreground.color);
-		
+
 		updateLuminance(background);
 		updateLuminance(foreground);
 
@@ -94,26 +94,26 @@ function update() {
 		    max = contrast.max,
 		    range = max - min,
 		    classes = [], percentages = [];
-		
+
 		for (var level in levels) {
 			var bounds = levels[level].range,
 			    lower = bounds[0],
 			    upper = bounds[1];
-			
+
 			if (min < upper && max >= lower) {
 				classes.push(level);
-				
+
 				percentages.push({
 					level: level,
 					percentage: 100 * rangeIntersect(min, max, upper, lower) / range
 				});
 			}
 		}
-		
+
 		$('strong', output).textContent = contrast.ratio;
-		
+
 		var error = $('.error', output);
-		
+
 		if (contrast.error) {
 			error.textContent = '±' + contrast.error;
 			error.title = min + ' - ' + max;
@@ -122,7 +122,7 @@ function update() {
 			error.textContent = '';
 			error.title = '';
 		}
-		
+
 		if (classes.length <= 1) {
 			results.textContent = messages[classes[0]];
 			output.style.backgroundImage = '';
@@ -130,67 +130,67 @@ function update() {
 		}
 		else {
 			var fragment = document.createDocumentFragment();
-			
+
 			var p = document.createElement('p');
 			p.textContent = messages.semitransparent;
 			fragment.appendChild(p);
-			
+
 			var ul = document.createElement('ul');
-			
-			
+
+
 			var message = '<p></p><ul>';
-			
+
 			for (var i=0; i<classes.length; i++) {
 				var li = document.createElement('li');
-				
+
 				li.textContent = messages[classes[i]];
-				
+
 				ul.appendChild(li);
 			}
-			
+
 			fragment.appendChild(ul);
-			
+
 			results.textContent = '';
 			results.appendChild(fragment);
-			
+
 			// Create gradient illustrating levels
 			var stops = [], previousPercentage = 0;
 
 			for (var i=0; i < 2 * percentages.length; i++) {
 				var info = percentages[i % percentages.length];
-				
+
 				var level = info.level;
 				var color = levels[level].color,
 				    percentage = previousPercentage + info.percentage / 2;
-				
+
 				stops.push(color + ' ' + previousPercentage + '%', color + ' ' + percentage + '%');
-				
+
 				previousPercentage = percentage;
 			}
-			
+
 			if (PrefixFree.functions.indexOf('linear-gradient') > -1) {
 				// Prefixed implementation
 				var gradient = 'linear-gradient(-45deg, ' + stops.join(', ') + ')';
-				
+
 				output.style.backgroundImage = PrefixFree.prefix + gradient;
 			}
 			else {
 				var gradient = 'linear-gradient(135deg, ' + stops.join(', ') + ')';
-				
+
 				output.style.backgroundImage = gradient;
 			}
 		}
-		
-		output.className = classes.join(' '); 
-		
+
+		output.className = classes.join(' ');
+
 		ctx.clearRect(0, 0, 16, 16);
-		
+
 		ctx.fillStyle = background.color + '';
 		ctx.fillRect(0, 0, 8, 16);
-		
+
 		ctx.fillStyle = foreground.color + '';
 		ctx.fillRect(8, 0, 8, 16);
-		
+
 		$('link[rel="shortcut icon"]').setAttribute('href', canvas.toDataURL());
 	}
 }
@@ -198,20 +198,20 @@ function update() {
 function colorChanged(input) {
 	input.style.width = input.value.length * .56 + 'em';
 	input.style.width = input.value.length + 'ch';
-	
+
 	var isForeground = input == foreground;
-	
+
 	var display = isForeground? foregroundDisplay : backgroundDisplay;
-	
+
 	var previousColor = getComputedStyle(display).backgroundColor;
 
 	// Match a 6 digit hex code, add a hash in front.
 	if(input.value.match(/^[0-9a-f]{6}$/i)) {
 		input.value = '#' + input.value;
 	}
-	
+
 	display.style.background = input.value;
-	
+
 	var color = getComputedStyle(display).backgroundColor;
 
 	if (color && input.value && (color !== previousColor || color === 'transparent' || color === 'rgba(0, 0, 0, 0)')) {
@@ -219,12 +219,12 @@ function colorChanged(input) {
 		if (isForeground) {
 			backgroundDisplay.style.color = input.value;
 		}
-		
+
 		input.color = new Color(color);
-		
+
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -232,7 +232,7 @@ function hashchange() {
 
 	if (location.hash) {
 		var colors = location.hash.slice(1).split('-on-');
-		
+
 		foreground.value = decodeURIComponent(colors[0]);
 		background.value = decodeURIComponent(colors[1]);
 	}
@@ -240,7 +240,7 @@ function hashchange() {
 		foreground.value = foreground.defaultValue;
 		background.value = background.defaultValue;
 	}
-	
+
 	background.oninput();
 	foreground.oninput();
 }
@@ -258,10 +258,10 @@ swap.onclick = function() {
 	var backgroundColor = background.value;
 	background.value = foreground.value;
 	foreground.value = backgroundColor;
-	
+
 	colorChanged(background);
 	colorChanged(foreground);
-	
+
 	update();
 };
 
