@@ -135,10 +135,12 @@ _.prototype = {
 		// If we’re here, it means we have a semi-transparent background
 		// The text color may or may not be semi-transparent, but that doesn't matter
 		
-		var onBlack = this.overlayOn(_.BLACK).contrast(color).ratio,
-		    onWhite = this.overlayOn(_.WHITE).contrast(color).ratio;
+		var onBlack = this.overlayOn(_.BLACK),
+		    onWhite = this.overlayOn(_.WHITE),
+		    contrastOnBlack = onBlack.contrast(color).ratio,
+		    contrastOnWhite = onWhite.contrast(color).ratio;
 		    
-		var max = Math.max(onBlack, onWhite);
+		var max = Math.max(contrastOnBlack, contrastOnWhite);
 		
 		// This is here for backwards compatibility and not used to calculate
 		// `min`.  Note that there may be other colors with a closer luminance to
@@ -150,11 +152,11 @@ _.prototype = {
 		closest = new _(closest);
 
 		var min = 1;
-		if (this.overlayOn(_.BLACK).luminance > color.luminance) {
-			min = onBlack;
+		if (onBlack.luminance > color.luminance) {
+			min = contrastOnBlack;
 		}
-		else if (this.overlayOn(_.WHITE).luminance < color.luminance) {
-			min = onWhite;
+		else if (onWhite.luminance < color.luminance) {
+			min = contrastOnWhite;
 		}
 
 		return {
