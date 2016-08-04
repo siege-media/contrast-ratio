@@ -123,13 +123,26 @@ function update() {
 			error.title = '';
 		}
 
+			var precise = document.createElement('p');
+			precise.className = 'precise-value';
+			precise.textContent = 'Precise value: ' + contrast.ratio;
+
 		if (classes.length <= 1) {
-			results.textContent = messages[classes[0]];
+
+			results.textContent = '';
+			results.appendChild(precise);
+
+			var p = document.createElement('p');
+			p.textContent = messages[classes[0]];
+			results.appendChild(p);
+
 			output.style.backgroundImage = '';
 			output.style.backgroundColor = levels[classes[0]].color;
 		}
 		else {
 			var fragment = document.createDocumentFragment();
+
+			fragment.appendChild(precise);
 
 			var p = document.createElement('p');
 			p.textContent = messages.semitransparent;
