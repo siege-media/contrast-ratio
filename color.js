@@ -11,6 +11,20 @@ Math.round = (function(){
 	};
 })();
 
+// Extend Math.floor to allow for precision
+Math.floor = (function(){
+	var floor = Math.floor;
+
+	return function (number, decimals) {
+		decimals = +decimals || 0;
+
+		var multiplier = Math.pow(10, decimals);
+
+		return floor(number * multiplier) / multiplier;
+	};
+})();
+
+
 // Simple class for handling sRGB colors
 (function(){
 
