@@ -110,7 +110,7 @@ function update() {
 			}
 		}
 
-		$('strong', output).textContent = contrast.ratio;
+		$('strong', output).textContent = Math.floor(contrast.ratio, 1);
 
 		var error = $('.error', output);
 
