@@ -26,13 +26,13 @@ body > h1 {
 }
 
     body > h1 a {
-        margin-left: -1.7em;
+        display: flex;
     }
 
         body > h1 span,
         body > h1 strong {
+            flex: 1 1 0;
             padding: .1em .4em;
-            display: inline-block;
         }
 
         body > h1 span {
