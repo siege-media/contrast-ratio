@@ -30,7 +30,7 @@ body > h1 {
     }
 
         body > h1 div {
-            flex: 1 1 0;
+            flex: 1 1 0px;
         }
 
         body > h1 div:first-child {
