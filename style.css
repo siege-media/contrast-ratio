@@ -29,21 +29,31 @@ body > h1 {
         display: flex;
     }
 
-        body > h1 span,
-        body > h1 strong {
+        body > h1 div {
             flex: 1 1 0;
-            padding: .1em .4em;
         }
 
-        body > h1 span {
-            background: black;
-            color: white;
+        body > h1 div:first-child {
+            text-align: right;
         }
 
-        body > h1 strong {
-            background: white;
-            color: black;
+        body > h1 div:last-child {
+            text-align: left;
         }
+
+            body > h1 div > * {
+                padding: .1em .4em;
+            }
+
+            body > h1 span {
+                background: black;
+                color: white;
+            }
+
+            body > h1 strong {
+                background: white;
+                color: black;
+            }
 
 label {
 	position: absolute;
