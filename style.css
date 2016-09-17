@@ -20,27 +20,40 @@ a {
 
 body > h1 {
 	margin-bottom: 1.3em;
-	text-indent: -1.7em;
 	text-transform: lowercase;
 	letter-spacing: -1px;
-	word-spacing: -.25em;
 	line-height: 1.3;
 }
 
-	body > h1 span,
-	body > h1 strong {
-		padding: .1em .4em;
-	}
+    body > h1 a {
+        display: flex;
+    }
 
-	body > h1 span {
-		background: black;
-		color: white;
-	}
+        body > h1 div {
+            flex: 1 1 0px;
+        }
 
-	body > h1 strong {
-		background: white;
-		color: black;
-	}
+        body > h1 div:first-child {
+            text-align: right;
+        }
+
+        body > h1 div:last-child {
+            text-align: left;
+        }
+
+            body > h1 div > * {
+                padding: .1em .4em;
+            }
+
+            body > h1 span {
+                background: black;
+                color: white;
+            }
+
+            body > h1 strong {
+                background: white;
+                color: black;
+            }
 
 label {
 	position: absolute;
