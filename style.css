@@ -151,6 +151,10 @@ output {
 			font-size: 45%;
 			letter-spacing: normal;
 		}
+
+.precise-value {
+	font-weight: bold;
+}		
 	
 .color-display {
 	position: fixed;
