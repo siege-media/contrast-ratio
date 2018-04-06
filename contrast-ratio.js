@@ -167,18 +167,10 @@ function update() {
 				
 				previousPercentage = percentage;
 			}
-			
-			if (PrefixFree.functions.indexOf('linear-gradient') > -1) {
-				// Prefixed implementation
-				var gradient = 'linear-gradient(-45deg, ' + stops.join(', ') + ')';
-				
-				output.style.backgroundImage = PrefixFree.prefix + gradient;
-			}
-			else {
-				var gradient = 'linear-gradient(135deg, ' + stops.join(', ') + ')';
-				
-				output.style.backgroundImage = gradient;
-			}
+
+			var gradient = 'linear-gradient(135deg, ' + stops.join(', ') + ')';
+
+			output.style.backgroundImage = gradient;
 		}
 		
 		output.className = classes.join(' '); 
