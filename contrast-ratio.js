@@ -131,17 +131,17 @@ function update() {
 		else {
 			var fragment = document.createDocumentFragment();
 
-			var p = document.createElement("p");
+			var p = document.createElement('p');
 			p.textContent = messages.semitransparent;
 			fragment.appendChild(p);
 
-			var ul = document.createElement("ul");
+			var ul = document.createElement('ul');
 
 
-			var message = "<p></p><ul>";
+			var message = '<p></p><ul>';
 
 			for (var i=0; i<classes.length; i++) {
-				var li = document.createElement("li");
+				var li = document.createElement('li');
 
 				li.textContent = messages[classes[i]];
 
@@ -150,7 +150,7 @@ function update() {
 
 			fragment.appendChild(ul);
 
-			results.textContent = "";
+			results.textContent = '';
 			results.appendChild(fragment);
 
 			// Create gradient illustrating levels
@@ -197,6 +197,11 @@ function colorChanged(input) {
 
 	var previousColor = getComputedStyle(display).backgroundColor;
 
+	// Match a 6 digit hex code, add a hash in front.
+	if (input.value.match(/^[0-9a-f]{6}$/i)) {
+		input.value = "#" + input.value;
+	}
+
 	display.style.background = input.value;
 
 	var color = getComputedStyle(display).backgroundColor;
@@ -230,7 +235,7 @@ function hashchange() {
 
 	background.oninput();
 	foreground.oninput();
-};
+}
 
 background.oninput =
 foreground.oninput = function() {
@@ -239,7 +244,7 @@ foreground.oninput = function() {
 	if (valid) {
 		update();
 	}
-}
+};
 
 swap.onclick = function() {
 	var backgroundColor = background.value;
@@ -250,7 +255,7 @@ swap.onclick = function() {
 	colorChanged(foreground);
 
 	update();
-}
+};
 
 window.encodeURIComponent = (function(){
 	var encodeURIComponent = window.encodeURIComponent;
