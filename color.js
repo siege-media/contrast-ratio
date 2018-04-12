@@ -1,16 +1,3 @@
-// Extend Math.round to allow for precision
-Math.round = (function(){
-	var round = Math.round;
-
-	return function (number, decimals) {
-		decimals = +decimals || 0;
-
-		var multiplier = Math.pow(10, decimals);
-
-		return round(number * multiplier) / multiplier;
-	};
-})();
-
 // Simple class for handling sRGB colors
 (function(){
 
@@ -34,7 +21,9 @@ var _ = self.Color = function(rgba) {
 		rgba[3] = 1;
 	}
 
-	rgba = rgba.map(function (a) { return Math.round(a, 3) });
+	rgba = rgba.map(function (a) {
+		return floor(a, 3);
+	});
 
 	this.rgba = rgba;
 };
@@ -122,7 +111,7 @@ _.prototype = {
 				ratio = 1 / ratio;
 			}
 
-			ratio = Math.round(ratio, 1);
+			ratio = floor(ratio, 2);
 
 			return {
 				ratio: ratio,
@@ -160,8 +149,8 @@ _.prototype = {
 		}
 
 		return {
-			ratio: Math.round((min + max) / 2, 2),
-			error: Math.round((max - min) / 2, 2),
+			ratio: floor((min + max) / 2, 2),
+			error: floor((max - min) / 2, 2),
 			min: min,
 			max: max,
 			closest: closest,
@@ -173,5 +162,14 @@ _.prototype = {
 _.BLACK = new _([0,0,0]);
 _.GRAY = new _([127.5, 127.5, 127.5]);
 _.WHITE = new _([255,255,255]);
+
+// Math.floor with precision
+function floor(number, decimals) {
+	decimals = +decimals || 0;
+
+	var multiplier = Math.pow(10, decimals);
+
+	return Math.floor(number * multiplier) / multiplier;
+}
 
 })();

@@ -8,7 +8,9 @@ function $$(expr, con) {
 
 // Make each ID a global variable
 // Many browsers do this anyway (it’s in the HTML5 spec), so it ensures consistency
-$$("[id]").forEach(function(element) { window[element.id] = element; });
+$$("[id]").forEach(function(element) {
+	window[element.id] = element; 
+});
 
 var messages = {
 	"semitransparent": "The background is semi-transparent, so the contrast ratio cannot be precise. Depending on what’s going to be underneath, it could be any of the following:",
@@ -131,17 +133,17 @@ function update() {
 		else {
 			var fragment = document.createDocumentFragment();
 
-			var p = document.createElement('p');
+			var p = document.createElement("p");
 			p.textContent = messages.semitransparent;
 			fragment.appendChild(p);
 
-			var ul = document.createElement('ul');
+			var ul = document.createElement("ul");
 
 
-			var message = '<p></p><ul>';
+			var message = "<p></p><ul>";
 
 			for (var i=0; i<classes.length; i++) {
-				var li = document.createElement('li');
+				var li = document.createElement("li");
 
 				li.textContent = messages[classes[i]];
 
@@ -150,7 +152,7 @@ function update() {
 
 			fragment.appendChild(ul);
 
-			results.textContent = '';
+			results.textContent = "";
 			results.appendChild(fragment);
 
 			// Create gradient illustrating levels
