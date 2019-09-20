@@ -139,9 +139,6 @@ function update() {
 
 			var ul = document.createElement("ul");
 
-
-			var message = "<p></p><ul>";
-
 			for (var i=0; i<classes.length; i++) {
 				var li = document.createElement("li");
 
