@@ -21,9 +21,7 @@ var _ = self.Color = function(rgba) {
 		rgba[3] = 1;
 	}
 
-	rgba = rgba.map(function (a) {
-		return floor(a, 3);
-	});
+	rgba = rgba.map(a => +a);
 
 	this.rgba = rgba;
 };
@@ -111,7 +109,7 @@ _.prototype = {
 				ratio = 1 / ratio;
 			}
 
-			ratio = floor(ratio, 2);
+			// ratio = floor(ratio, 2);
 
 			return {
 				ratio: ratio,
@@ -149,8 +147,8 @@ _.prototype = {
 		}
 
 		return {
-			ratio: floor((min + max) / 2, 2),
-			error: floor((max - min) / 2, 2),
+			ratio: (min + max) / 2,
+			error: (max - min) / 2,
 			min: min,
 			max: max,
 			closest: closest,
@@ -162,14 +160,5 @@ _.prototype = {
 _.BLACK = new _([0,0,0]);
 _.GRAY = new _([127.5, 127.5, 127.5]);
 _.WHITE = new _([255,255,255]);
-
-// Math.floor with precision
-function floor(number, decimals) {
-	decimals = +decimals || 0;
-
-	var multiplier = Math.pow(10, decimals);
-
-	return Math.floor(number * multiplier) / multiplier;
-}
 
 })();

@@ -116,7 +116,7 @@ label {
 			border-radius: 0 .3em .3em 0;
 		}
 
-output {
+.contrast {
 	display: block;
 	position: relative;
 	width: 3em;
@@ -136,11 +136,11 @@ output {
 	border-radius: 50%;
 }
 
-	output strong {
+	.contrast strong {
 		color: white !important;
 	}
 
-		output .error {
+		.contrast .error {
 			position: absolute;
 			bottom: 1em;
 			left: 0;
@@ -192,28 +192,27 @@ output {
 #results {
 	position: absolute;
 	left: 50%;
-	width: 15em;
-	padding: 1em 1.5em;
-	border: 1px solid gray;
+	max-width: 20em;
+	padding: 1em;
 	border-radius: .5em;
-	margin-left: -9em;
 	margin-top: .7em;
-	box-shadow: .1em .1em .8em -.1em black;
+	filter: drop-shadow(.1em .1em .5em rgba(0,0,0,.5));
 	background: white;
 	text-align: left;
 	font-size: 65%;
-	transform: scale(0);
+	transform: translateX(-50%) scale(0);
 	transform-origin: top;
 	transition: .4s transform;
 }
 
-output:focus + #results,
-output:hover + #results {
-	transform: none;
+.contrast:focus + #results,
+.contrast:hover + #results,
+#results:hover {
+	transform: translateX(-50%);
 	transition-timing-function: cubic-bezier(.5,0,.7,1.8);
 }
 
-	#results:before,
+	/* Pointer */
 	#results:after {
 		content: '';
 		position: absolute;
@@ -221,23 +220,22 @@ output:hover + #results {
 		left: 50%;
 		width: 0;
 		height: 0;
-
-	}
-
-	#results:before {
 		margin-left: -17px;
 		margin-top: -2px;
 		border: 17px solid transparent;
 		border-top-width: 0;
-		border-bottom-color: gray;
+		border-bottom-color: white;
 	}
 
-	#results:after {
-		margin-left: -16px;
-		margin-top: -1px;
-		border: 16px solid transparent;
-		border-top-width: 0;
-		border-bottom-color: white;
+	/* Extend hoverable area */
+	#results:before {
+		content: " ";
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, -100%);
+		width: 7em;
+		height: 3em;
 	}
 
 	#results p,
@@ -315,4 +313,33 @@ canvas {
 	.carbon-poweredby {
 		display: block;
 		opacity: .5;
+	}
+
+output.rl {
+	display: block;
+	margin: .5em 0 0 1em;
+	font-size: 60%;
+	font-weight: bold;
+}
+
+	output.rl::before {
+		content: attr(aria-label) ": ";
+		font-weight: normal;
+	}
+
+#preciseContrast {
+	display: block;
+	font-weight: bold;
+	background: hsl(220, 10%, 90%);
+	padding: .5em .5em .2em;
+	margin-bottom: .5em;
+	font-size: 150%;
+}
+
+	#preciseContrast::before {
+		content: attr(aria-label);
+		display: block;
+		font-size: 50%;
+		color: hsl(220, 10%, 40%);
+		text-transform: uppercase;
 	}

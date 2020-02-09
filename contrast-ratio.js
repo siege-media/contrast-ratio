@@ -9,8 +9,17 @@ function $$(expr, con) {
 // Make each ID a global variable
 // Many browsers do this anyway (it’s in the HTML5 spec), so it ensures consistency
 $$("[id]").forEach(function(element) {
-	window[element.id] = element; 
+	window[element.id] = element;
 });
+
+// Math.floor with precision
+function floor(number, decimals) {
+	decimals = +decimals || 0;
+
+	var multiplier = Math.pow(10, decimals);
+
+	return Math.floor(number * multiplier) / multiplier;
+}
 
 var messages = {
 	"semitransparent": "The background is semi-transparent, so the contrast ratio cannot be precise. Depending on what’s going to be underneath, it could be any of the following:",
@@ -37,7 +46,7 @@ if (window.Incrementable) {
 	incrementable.onload();
 }
 
-var output = $("output");
+var output = $(".contrast");
 
 var levels = {
 	"fail": {
@@ -63,15 +72,20 @@ function rangeIntersect(min, max, upper, lower) {
 }
 
 function updateLuminance(input) {
-	input.title = "Relative luminance: ";
+	var luminanceOutput = $(".rl", input.parentNode);
 
 	var color = input.color;
 
 	if (input.color.alpha < 1) {
-		input.title += color.overlayOn(Color.BLACK).luminance + " - " + color.overlayOn(Color.WHITE).luminance;
+		var lumBlack = color.overlayOn(Color.BLACK).luminance;
+		var lumWhite = color.overlayOn(Color.WHITE).luminance;
+
+		luminanceOutput.textContent = lumBlack + " - " + lumWhite;
+		luminanceOutput.style.color = Math.min(lumBlack, lumWhite) < .2? "white" : "black";
 	}
 	else {
-		input.title += color.luminance;
+		luminanceOutput.textContent = color.luminance;
+		luminanceOutput.style.color = color.luminance < .2? "white" : "black";
 	}
 }
 
@@ -88,7 +102,7 @@ function update() {
 		}
 
 		var contrast = background.color.contrast(foreground.color);
-
+console.log(contrast);
 		updateLuminance(background);
 		updateLuminance(foreground);
 
@@ -112,21 +126,25 @@ function update() {
 			}
 		}
 
-		$("strong", output).textContent = contrast.ratio;
+		$("strong", output).textContent = floor(contrast.ratio, 2);
+
+		preciseContrast.innerHTML = `Precise contrast: ${contrast.ratio - contrast.error}`;
 
 		var error = $(".error", output);
 
 		if (contrast.error) {
-			error.textContent = "±" + contrast.error;
-			error.title = min + " - " + max;
+			error.textContent = "±" + floor(contrast.error, 2);
+			error.title = floor(min, 2) + " - " + floor(max, 2);
+			preciseContrast.textContent = `${min} - ${max}`;
 		}
 		else {
 			error.textContent = "";
 			error.title = "";
+			preciseContrast.textContent = contrast.ratio;
 		}
 
 		if (classes.length <= 1) {
-			results.textContent = messages[classes[0]];
+			wcag.textContent = messages[classes[0]];
 			output.style.backgroundImage = "";
 			output.style.backgroundColor = levels[classes[0]].color;
 		}
@@ -149,8 +167,8 @@ function update() {
 
 			fragment.appendChild(ul);
 
-			results.textContent = "";
-			results.appendChild(fragment);
+			wcag.textContent = "";
+			wcag.appendChild(fragment);
 
 			// Create gradient illustrating levels
 			var stops = [], previousPercentage = 0;
@@ -172,7 +190,7 @@ function update() {
 			output.style.backgroundImage = gradient;
 		}
 
-		output.className = classes.join(" ");
+		output.className = "contrast " + classes.join(" ");
 
 		ctx.clearRect(0, 0, 16, 16);
 

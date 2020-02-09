@@ -15,20 +15,23 @@
 <label class="background">
 	<span>Background:</span>
 	<input id="background" value="white" autofocus />
+	<output for="background foreground" class="rl" aria-live="polite" aria-label="Relative Luminance"></output>
 </label>
 
 <label class="foreground">
 	<span>Text color:</span>
 	<input id="foreground" value="hsla(200,0%,0%,.7)" />
+	<output for="background foreground" class="rl" aria-live="polite" aria-label="Relative Luminance"></output>
 </label>
 
-<output tabindex="0" aria-live="polite">
+<output for="background foreground" class="contrast" tabindex="0" aria-live="polite">
 	<strong>?</strong>
 	<span class="error"></span>
 </output>
 
 <section id="results">
-
+	<output for="background foreground" id="preciseContrast" aria-label="Precise contrast"></output>
+	<output for="background foreground" id="wcag"></output>
 </section>
 
 <section class="color-display" id="backgroundDisplay">
