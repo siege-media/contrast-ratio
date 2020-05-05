@@ -214,8 +214,10 @@ function colorChanged(input) {
 
 	var previousColor = getComputedStyle(display).backgroundColor;
 
-	// Match a 6 digit hex code, add a hash in front.
-	if (input.value.match(/^[0-9a-f]{6}$/i)) {
+	// Add hash to front of 3, 4, 6, and 8 digit hex codes.
+	var accepted_matches = [3, 4, 6, 8]
+	var match_result = input.value.match(/^[0-9a-f]{3,8}$/i)
+	if (match_result && accepted_matches.includes(match_result[0].length)){
 		input.value = "#" + input.value;
 	}
 
