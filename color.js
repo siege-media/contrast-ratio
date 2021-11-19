@@ -152,7 +152,7 @@ _.prototype = {
 			min: min,
 			max: max,
 			closest: closest,
-			farthest: onWhite == max? _.WHITE : _.BLACK
+			farthest: contrastOnWhite == max? _.WHITE : _.BLACK
 		};
 	}
 };
