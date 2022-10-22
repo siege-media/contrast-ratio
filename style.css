@@ -88,7 +88,7 @@ label {
 		}
 
 
-	input {
+	.text-input {
 		position: relative;
 		display: block;
 		min-width: 8em;
@@ -103,6 +103,12 @@ label {
 		box-shadow: .05em .1em .2em rgba(0,0,0,.4) inset;
 	}
 
+		.input-wrapper {
+			position: relative;
+			display: flex;
+			align-items: center;
+		}
+
 		input#background {
 			padding-right: 2em;
 			margin-right: -.1em;
@@ -114,6 +120,22 @@ label {
 			padding-left: 2em;
 			margin-left: -.1em;
 			border-radius: 0 .3em .3em 0;
+		}
+
+		.color-picker {
+			position: absolute;
+			height: 5ch;
+			margin: 0;
+			padding: 0;
+			width: 5ch;
+		}
+
+		#foregroundColorPicker {
+			right: -7ch;
+		}
+
+		#backgroundColorPicker {
+			left: -7ch;
 		}
 
 .contrast {

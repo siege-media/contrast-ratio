@@ -6,8 +6,12 @@ function $$(expr, con) {
 	return Array.prototype.slice.call((con || document).querySelectorAll(expr));
 }
 
-// Make each ID a global variable
-// Many browsers do this anyway (it’s in the HTML5 spec), so it ensures consistency
+/*
+ * Make each element with an ID a global variable.
+ * Many browsers do this anyway (it’s in the HTML5 spec), so it ensures consistency.
+ *
+ * https://html.spec.whatwg.org/multipage/window-object.html#named-access-on-the-window-object
+ */
 $$("[id]").forEach(function(element) {
 	window[element.id] = element;
 });
@@ -72,7 +76,7 @@ function rangeIntersect(min, max, upper, lower) {
 }
 
 function updateLuminance(input) {
-	var luminanceOutput = $(".rl", input.parentNode);
+	var luminanceOutput = $(".rl", input.parentNode.parentNode);
 
 	var color = input.color;
 
@@ -102,7 +106,7 @@ function update() {
 		}
 
 		var contrast = background.color.contrast(foreground.color);
-console.log(contrast);
+
 		updateLuminance(background);
 		updateLuminance(foreground);
 
@@ -260,9 +264,32 @@ background.oninput =
 foreground.oninput = function() {
 	var valid = colorChanged(this);
 
-	if (valid) {
-		update();
+	if (!valid) {
+		return;
 	}
+
+	update();
+
+	if (this === background) {
+		var bgStyle = getComputedStyle(backgroundDisplay).backgroundColor;
+		backgroundColorPicker.value = new Color(bgStyle).toHex(false);
+	}
+	else {
+		var fgStyle = getComputedStyle(foregroundDisplay).backgroundColor;
+		foregroundColorPicker.value = new Color(fgStyle).toHex(false);
+	}
+};
+
+backgroundColorPicker.oninput = (event) => {
+	background.value = event.target.value;
+	colorChanged(background);
+	update();
+};
+
+foregroundColorPicker.oninput = function(event) {
+	foreground.value = event.target.value;
+	colorChanged(foreground);
+	update();
 };
 
 swap.onclick = function() {
@@ -274,6 +301,12 @@ swap.onclick = function() {
 	colorChanged(foreground);
 
 	update();
+
+	var bgStyle = getComputedStyle(backgroundDisplay).backgroundColor;
+	backgroundColorPicker.value = new Color(bgStyle).toHex(false);
+
+	var fgStyle = getComputedStyle(foregroundDisplay).backgroundColor;
+	foregroundColorPicker.value = new Color(fgStyle).toHex(false);
 };
 
 window.encodeURIComponent = (function(){
