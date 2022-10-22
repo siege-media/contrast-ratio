@@ -1,0 +1,14 @@
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+curly_bracket_next_line = false
+spaces_around_operators = true
+
+# Tabs have been outlawed since they are treated differently by different editors and tools.
+# — https://yaml.org/faq.html
+[*.{yaml,yml}]
+indent_style = space
