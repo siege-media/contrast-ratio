@@ -69,6 +69,24 @@ _.prototype = {
 		return 'rgb' + (this.alpha < 1? 'a' : '') + '(' + this.rgba.slice(0, this.alpha >= 1? 3 : 4).join(', ') + ')';
 	},
 
+  /**
+ * @param {boolean} withAlpha If the output should include the alpha channel.
+ * @returns {string} A hex color string in the format `#RRGGBB` or `#RRGGBBAA.
+ */
+  toHex: function(withAlpha = true) {
+    var [ r, g, b, a ] = this.rgba;
+    var uint8ToHex = function(uint8) { return uint8.toString(16).padStart(2, '0'); }
+
+    var result = `#${uint8ToHex(r)}${uint8ToHex(g)}${uint8ToHex(b)}`;
+
+    if (withAlpha) {
+      var aHex = uint8ToHex(a * 255);
+      result += aHex;
+    }
+
+    return result;
+  },
+
 	clone: function() {
 		return new _(this.rgba);
 	},
