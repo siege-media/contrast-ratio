@@ -364,3 +364,28 @@ output.rl {
 		color: hsl(220, 10%, 40%);
 		text-transform: uppercase;
 	}
+.siege-media-cta {
+	display: flex;
+	position: absolute;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	bottom: 0;
+	right: 0;
+	min-width: 400px;
+	min-height: 150px;
+	width: 30%;
+	height: 20%;
+	background-color: white;
+	text-align: left;
+}
+
+.siege-media-cta > img {
+	border: 0.5em solid white;
+}
+
+.siege-media-cta > div {
+	margin: 3px;
+	font-size: clamp(14px, 1.5vw, 18px);
+	line-height: 22px;
+	color: #333333
+}
